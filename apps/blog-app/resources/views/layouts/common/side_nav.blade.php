@@ -5,10 +5,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('assets/images/no-avatar.jpg') }}" class="img-circle" alt="alt-image">
+                <img src="{{ asset('assets/images/no-avatar.jpg') }}" class="img-circle" alt="{{ auth()->guard()->user()->username }}">
             </div>
             <div class="pull-left info">
-                <p>Name</p>
+                <p>{{ auth()->guard()->user()->first_name . ' ' . auth()->guard()->user()->last_name }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Admin</a>
             </div>
         </div>
@@ -18,8 +18,8 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
 
-            <li>
-                <a href="#">
+            <li @if(route('dashboard') == url()->current()) class="active" @endif>
+                <a href="{{ route('dashboard') }}">
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
                 </a>

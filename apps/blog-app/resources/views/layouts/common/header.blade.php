@@ -25,15 +25,15 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('assets/images/no-avatar.jpg') }}" class="user-image" alt="alt-image">
-                        <span class="hidden-xs">Name</span>
+                        <img src="{{ asset('assets/images/no-avatar.jpg') }}" class="user-image" alt="{{ auth()->guard()->user()->username }}">
+                        <span class="hidden-xs">{{ auth()->guard()->user()->first_name . ' ' . auth()->guard()->user()->last_name }}</span>
                     </a>
 
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="{{ asset('assets/images/no-avatar.jpg') }}" class="img-circle" alt="alt-image">
-                            <p>Name - Admin</p>
+                            <img src="{{ asset('assets/images/no-avatar.jpg') }}" class="img-circle" alt="{{ auth()->guard()->user()->username }}">
+                            <p>{{ auth()->guard()->user()->first_name . ' ' . auth()->guard()->user()->last_name }} - Admin</p>
                         </li>
                         <!-- User image -->
 
@@ -43,7 +43,11 @@
                                 <a href="#" class="btn btn-default btn-flat">Edit Account</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+
+                                    <button type="submit" class="btn btn-default btn-flat">Sign out</button>
+                                </form>
                             </div>
                         </li>
                         <!-- Menu Footer-->
