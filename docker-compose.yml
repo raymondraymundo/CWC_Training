@@ -1,0 +1,37 @@
+version: '3'
+services:
+  mysql:
+    build: ./docker-configs/mysql
+    container_name: cwc_training_mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: sysdev
+    volumes:
+      - ./data/mysql:/var/lib/mysql:cached
+      - ./data/init.d:/docker-entrypoint-initdb.d
+      - ./data/backup:/usr/backup
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: cwc_training_nginx
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./docker-configs/nginx-proxy/certs:/etc/nginx/certs
+      - ./docker-configs/nginx-proxy/vhost.d:/etc/nginx/vhost.d:ro
+    ports:
+      - '80:80'
+      - '443:443'
+
+  blog-app:
+    build: docker-configs/blog-app
+    container_name: cwc_training_blog_app
+    volumes:
+      - ./apps/blog-app:/var/www/html
+      - ./docker-configs/blog-app/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    environment:
+      - VIRTUAL_HOST=cwc-training-blog-app.local.host
