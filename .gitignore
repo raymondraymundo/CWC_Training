@@ -1,0 +1,6 @@
+/data/backup/*
+/data/init.d/*
+/data/mysql/*
+.idea/
+.DS_Store
+!apps/.gitkeep
