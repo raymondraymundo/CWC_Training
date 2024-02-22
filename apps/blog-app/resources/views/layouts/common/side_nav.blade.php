@@ -32,8 +32,8 @@
                 </a>
             </li>
 
-
-            <li class="treeview">
+            @php $routeNames = [route('article_categories.index')]; @endphp
+            <li @if(in_array(url()->current(), $routeNames)) class="active treeview" @else class="treeview" @endif>
                 <a href="#">
                     <i class="fa fa-newspaper-o"></i>
                     <span>Articles</span>
@@ -42,7 +42,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Article Categories</a></li>
+                    <li><a href="{{ route('article_categories.index') }}">Article Categories</a></li>
                     <li><a href="#">Articles</a></li>
                 </ul>
             </li>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ArticleCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,5 @@ Route::middleware('auth')->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('/users', UserController::class)->except(['show']);
+    Route::resource('/article_categories', ArticleCategoryController::class)->except(['show']);
 });
