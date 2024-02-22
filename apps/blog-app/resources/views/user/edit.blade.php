@@ -6,7 +6,7 @@
     <a href="{{ route('users.index') }}" class="btn btn-primary"><i class="fa fa-reply-all"></i> Back</a>
     <ol class="breadcrumb">
         <li><p><i class="fa fa-users"></i> User</p></li>
-        <li class="active"><a href="{{ route('users.create') }}">Edit User</a></li>
+        <li class="active"><a href="{{ route('users.edit', ['user' => $user->id]) }}">Edit User</a></li>
     </ol>
 @endsection
 

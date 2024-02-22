@@ -52,7 +52,7 @@
                                             @endif
                                         </td>
                                         <td colspan="2">
-                                            <!-- <form action="{{ route('users.destroy', ['user', $user->id]) }}"> -->
+                                            <!-- <form action="{{ route('users.destroy', ['user', $user->id]) }}" method="POST"> -->
                                             <form action="https://cwc-training-blog-app.local.host/users/{{ $user->id }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
