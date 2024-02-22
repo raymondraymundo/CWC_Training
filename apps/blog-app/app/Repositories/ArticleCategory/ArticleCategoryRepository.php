@@ -7,6 +7,8 @@ use App\Repositories\ArticleCategory\ArticleCategoryRepositoryInterface;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 
 class ArticleCategoryRepository implements ArticleCategoryRepositoryInterface
@@ -24,6 +26,7 @@ class ArticleCategoryRepository implements ArticleCategoryRepositoryInterface
             $articleCategories = $this->model->orderBy($order, $sort)->get();
             return $articleCategories;
         }catch (QueryException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new InvalidArgumentException($exception->getMessage());
         }
     }
@@ -34,6 +37,7 @@ class ArticleCategoryRepository implements ArticleCategoryRepositoryInterface
             $articleCategories = $this->model->orderBy($order, $sort)->paginate($perPage);
             return $articleCategories;
         }catch (QueryException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new InvalidArgumentException($exception->getMessage());
         }
     }
@@ -44,6 +48,7 @@ class ArticleCategoryRepository implements ArticleCategoryRepositoryInterface
             $articleCategory = $this->model->create(['name' => $data['name'], 'user_id' => auth()->user()->id]);
             return $articleCategory;
         }catch (QueryException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new InvalidArgumentException($exception->getMessage());
         }
     }
@@ -54,6 +59,7 @@ class ArticleCategoryRepository implements ArticleCategoryRepositoryInterface
             $articleCategory = $this->model->findOrFail($id);
             return $articleCategory;
         }catch (ModelNotFoundException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new ModelNotFoundException($exception->getMessage());
         }
     }
@@ -66,6 +72,7 @@ class ArticleCategoryRepository implements ArticleCategoryRepositoryInterface
 
             return $articleCategory;
         }catch (ModelNotFoundException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new ModelNotFoundException($exception->getMessage());
         }
     }
@@ -78,6 +85,7 @@ class ArticleCategoryRepository implements ArticleCategoryRepositoryInterface
 
             return $articleCategory;
         }catch (ModelNotFoundException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new ModelNotFoundException($exception->getMessage());
         }
     }

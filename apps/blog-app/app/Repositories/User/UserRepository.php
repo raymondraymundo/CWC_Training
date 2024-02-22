@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 
 class UserRepository implements UserRepositoryInterface
@@ -26,6 +28,7 @@ class UserRepository implements UserRepositoryInterface
             $users = $this->model->orderBy($order, $sort)->get();
             return $users;
         } catch (QueryException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new InvalidArgumentException($exception->getMessage());   
         }
     }
@@ -36,6 +39,7 @@ class UserRepository implements UserRepositoryInterface
             $users = $this->model->orderBy($order, $sort)->paginate($perPage);
             return $users;
         } catch (QueryException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new InvalidArgumentException($exception->getMessage());
             
         }
@@ -54,6 +58,7 @@ class UserRepository implements UserRepositoryInterface
 
             return $user;
         } catch (QueryException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new InvalidArgumentException($exception->getMessage());
             
         }
@@ -65,6 +70,7 @@ class UserRepository implements UserRepositoryInterface
             $user = $this->model->findOrFail($id);
             return $user;
         } catch (ModelNotFoundException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new ModelNotFoundException($exception->getMessage());
         }
     }
@@ -82,6 +88,7 @@ class UserRepository implements UserRepositoryInterface
 
             return $user;
         } catch (QueryException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new InvalidArgumentException($exception->getMessage());
             
         }
@@ -95,6 +102,7 @@ class UserRepository implements UserRepositoryInterface
 
             return $user;
         } catch (ModelNotFoundException $exception) {
+            Log::error(Route::currentRouteName().': '.$exception->getMessage());
             throw new ModelNotFoundException($exception->getMessage());
         }
     }
