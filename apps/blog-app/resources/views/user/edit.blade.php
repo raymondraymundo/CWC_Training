@@ -95,7 +95,7 @@
                             <!-- col-md-6 -->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password">Password*</label>
                                     <input type="password" name="password" id="password" class="form-control">
                                     <span class="text-danger">{{ $errors->first('password') }}</span>
                                 </div>
@@ -105,7 +105,7 @@
                             <!-- col-md-6 -->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="password_confirmation">Confirm Password</label>
+                                    <label for="password_confirmation">Confirm Password*</label>
                                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                                     <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                                 </div>
