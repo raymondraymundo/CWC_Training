@@ -7,32 +7,33 @@ use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 
 class UserRepository implements UserRepositoryInterface
 {
-    protected $user;
+    protected $model;
 
-    public function __construct(User $user)
+    public function __construct(User $model)
     {
-        $this->user = $user;
+        $this->model = $model;
     }
     
-    public function get(string $order = 'id', string $sort = 'ASC')
+    public function get(string $order = 'id', string $sort = 'ASC'): Collection
     {
         try {
-            $users = $this->user->orderBy($order, $sort)->get();
+            $users = $this->model->orderBy($order, $sort)->get();
             return $users;
         } catch (QueryException $exception) {
             throw new InvalidArgumentException($exception->getMessage());   
         }
     }
 
-    public function paginate(int $perPage = 10, string $order = 'id', string $sort = 'AS')
+    public function paginate(int $perPage = 10, string $order = 'id', string $sort = 'AS'): Collection
     {
         try {
-            $users = $this->user->orderBy($order, $sort)->paginate($perPage);
+            $users = $this->model->orderBy($order, $sort)->paginate($perPage);
             return $users;
         } catch (QueryException $exception) {
             throw new InvalidArgumentException($exception->getMessage());
@@ -40,7 +41,7 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function create(Request $request)
+    public function create(Request $request): User
     {
         try {
             $user = new User;
@@ -58,20 +59,20 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function find(int $id)
+    public function find(int $id): User
     {
         try {
-            $user = $this->user->findOrFail($id);
+            $user = $this->model->findOrFail($id);
             return $user;
         } catch (ModelNotFoundException $exception) {
             throw new ModelNotFoundException($exception->getMessage());
         }
     }
 
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): User
     {
         try {
-            $user = $this->user->findOrFail($id);
+            $user = $this->model->findOrFail($id);
             $user->username = $request->username;
             $user->last_name = $request->last_name;
             $user->first_name = $request->first_name;
@@ -86,10 +87,10 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function delete(int $id)
+    public function delete(int $id): User
     {
         try {
-            $user = $this->user->findOrFail($id);
+            $user = $this->model->findOrFail($id);
             $user->delete();
 
             return $user;
