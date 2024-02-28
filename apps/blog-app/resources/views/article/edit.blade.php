@@ -23,8 +23,7 @@
                 </div>
                 <!-- box-header -->
 
-                <!-- <form action="{{ route('articles.update', ['article' => $article->id]) }}" method="POST" enctype="multipart/form-data"> -->
-                <form action="https://cwc-training-blog-app.local.host/articles/{{ $article->id }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('articles.update', ['article' => $article->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 

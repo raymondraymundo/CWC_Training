@@ -23,8 +23,7 @@
                 </div>
                 <!-- box-header -->
 
-                <!-- <form action="{{ route('article_categories.update', ['article_category', $articleCategory->id]) }}" method="POST"> -->
-                <form action="https://cwc-training-blog-app.local.host/article_categories/{{ $articleCategory->id }}" method="POST">
+                <form action="{{ route('article_categories.update', ['article_category' => $articleCategory->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
 

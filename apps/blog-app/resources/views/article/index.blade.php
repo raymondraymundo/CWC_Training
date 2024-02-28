@@ -46,8 +46,7 @@
                                         <td>{{ $article->articleCategory->name }}</td>
                                         <td>{{ $article->user->first_name . ' ' . $article->user->last_name }}</td>
                                         <td colspan="3">
-                                            <!-- <form action="{{ route('articles.destroy', ['article', $article->id]) }}" method="POST"> -->
-                                            <form action="https://cwc-training-blog-app.local.host/articles/{{ $article->id }}" method="POST">
+                                            <form action="{{ route('articles.destroy', ['article' => $article->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
 

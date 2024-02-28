@@ -42,8 +42,7 @@
                                         <td>{{ $articleCategory->name }}</td>
                                         <td>{{ $articleCategory->user->first_name . ' ' . $articleCategory->user->last_name }}</td>
                                         <td colspan="2">
-                                            <!-- <form action="{{ route('article_categories.destroy', ['article_category', $articleCategory->id]) }}" method="POST"> -->
-                                            <form action="https://cwc-training-blog-app.local.host/article_categories/{{ $articleCategory->id }}" method="POST">
+                                            <form action="{{ route('article_categories.destroy', ['article_category' => $articleCategory->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
 

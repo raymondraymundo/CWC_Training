@@ -23,8 +23,7 @@
                 </div>
                 <!-- box-header -->
 
-                <!-- <form action="{{ route('article_categories.store') }}" method="POST"> -->
-                <form action="https://cwc-training-blog-app.local.host/article_categories" method="POST">
+                <form action="{{ route('article_categories.store') }}" method="POST">
                     @csrf
 
                     <!-- box-body -->
