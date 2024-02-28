@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Contracts\View\View;
@@ -23,6 +24,8 @@ class UserController extends Controller
      */
     public function index(): View
     {
+        $this->authorize('view', User::class);
+
         $users = $this->user->get();
         return view('user.index', compact('users'));
     }
@@ -34,6 +37,8 @@ class UserController extends Controller
      */
     public function create(): View
     {
+        $this->authorize('create', User::class);
+    
         return view('user.create');
     }
 
@@ -45,6 +50,8 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): RedirectResponse
     {
+        $this->authorize('create', User::class);
+
         $this->user->create($request);
         return redirect()->route('users.create')->with(['message' => 'User was successfully created.']);
     }
@@ -57,6 +64,8 @@ class UserController extends Controller
      */
     public function edit($id): View
     {
+        $this->authorize('update', User::class);
+
         $user = $this->user->find($id);
         return view('user.edit', compact('user'));
     }
@@ -70,6 +79,8 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id): RedirectResponse
     {
+        $this->authorize('update', User::class);
+
         $user = $this->user->update($request, $id);
         return redirect()->route('users.edit', ['user' => $id])->with(['message' => 'User was successfully updated.']);
     }
@@ -82,6 +93,8 @@ class UserController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
+        $this->authorize('delete', User::class);
+
         $this->user->delete($id);
         return redirect()->route('users.index')->with(['message' => 'User was successfully deleted.']);
     }
