@@ -43,7 +43,7 @@
                                     <tr>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
-                                        <td>{{ $user->role }}</td>
+                                        <td>{{ $user->role === 1 ? 'Admin' : 'User' }}</td>
                                         <td>
                                             @if(is_null($user->deleted_at))
                                                 <span class="label label-success">Active</span>

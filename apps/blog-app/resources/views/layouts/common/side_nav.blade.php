@@ -9,7 +9,7 @@
             </div>
             <div class="pull-left info">
                 <p>{{ auth()->guard()->user()->first_name . ' ' . auth()->guard()->user()->last_name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Admin</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> {{ auth()->guard()->user()->role === 1 ? 'Admin' : 'User' }}</a>
             </div>
         </div>
         <!-- Sidebar user panel -->

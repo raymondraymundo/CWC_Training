@@ -33,7 +33,7 @@
                         <!-- User image -->
                         <li class="user-header">
                             <img src="{{ asset('assets/images/no-avatar.jpg') }}" class="img-circle" alt="{{ auth()->guard()->user()->username }}">
-                            <p>{{ auth()->guard()->user()->first_name . ' ' . auth()->guard()->user()->last_name }} - Admin</p>
+                            <p>{{ auth()->guard()->user()->first_name . ' ' . auth()->guard()->user()->last_name }} - {{ auth()->guard()->user()->role === 1 ? 'Admin' : 'User' }}</p>
                         </li>
                         <!-- User image -->
 

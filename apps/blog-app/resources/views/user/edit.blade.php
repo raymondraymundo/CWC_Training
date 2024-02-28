@@ -74,10 +74,10 @@
                                     <select name="role" id="role" class="form-control select2" style="width: 100%;">
                                         @if($user->role == 1)
                                             <option value="1" selected>Admin</option>
-                                            <option value="2">User</option>
+                                            <option value="0">User</option>
                                         @else
                                             <option value="1">Admin</option>
-                                            <option value="2" selected>User</option>
+                                            <option value="0" selected>User</option>
                                         @endif
                                     </select>
                                     <span class="text-danger">{{ $errors->first('role') }}</span>

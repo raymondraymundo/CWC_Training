@@ -47,7 +47,7 @@ class UserRequest extends FormRequest
         }
 
         $baseRules['password'] = 'required|string|min:8|max:100|confirmed';
-        $baseRules['role'] = 'required|integer|in:1,2';
+        $baseRules['role'] = 'required|integer|in:0,1';
 
         return $baseRules;
     }
