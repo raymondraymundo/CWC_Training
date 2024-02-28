@@ -80,29 +80,29 @@
 
                         <!-- row -->
                         <div class="row">
-                            <!-- col-md-8 -->
-                            <div class="col-md-8">
+                            <!-- col-md-12 -->
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="image">Image (Optional)</label>
                                     <input type="file" name="image" id="image" class="form-control">
                                     <span class="text-danger">{{ $errors->first('image') }}</span>
                                 </div>
                             </div>
-                            <!-- col-md-8 -->
+                            <!-- col-md-12 -->
                         </div>
                         <!-- row -->
 
                         <!-- row -->
                         <div class="row">
-                            <!-- col-md-8 -->
-                            <div class="col-md-8">
+                            <!-- col-md-12 -->
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="contents">Contents*</label>
                                     <textarea name="contents" id="contents" cols="30" rows="10" class="form-control">{{ $article->contents }}</textarea>
                                     <span class="text-danger">{{ $errors->first('contents') }}</span>
                                 </div>
                             </div>
-                            <!-- col-md-8 -->
+                            <!-- col-md-12 -->
                         </div>
                         <!-- row -->
                     </div>
@@ -138,5 +138,11 @@
                 $('.text-danger').html('');
             });
         });
+
+        ClassicEditor
+            .create(document.querySelector('#contents'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 @endpush

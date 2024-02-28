@@ -93,6 +93,9 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
 
+    <!-- CKEditor CDN -->
+    <script src="{{ asset('assets/ckeditor/build/ckeditor.js') }}"></script>
+
     @stack('scripts')
 </body>
 </html>
