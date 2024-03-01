@@ -5,10 +5,11 @@ namespace App\Repositories\User;
 use App\Models\User;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\QueryException;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
@@ -33,7 +34,7 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function paginate(int $perPage = 10, string $order = 'id', string $sort = 'AS'): Collection
+    public function paginate(int $perPage = 10, string $order = 'id', string $sort = 'ASC'): Jsonable
     {
         try {
             $users = $this->model->orderBy($order, $sort)->paginate($perPage);

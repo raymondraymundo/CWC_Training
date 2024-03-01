@@ -4,13 +4,14 @@ namespace App\Repositories\Article;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Database\Eloquent\Collection;
 
 interface ArticleRepositoryInterface
 {
     public function get(string $order = 'id', string $sort = 'ASC'): Collection;
 
-    public function paginate(int $perPage = 10, string $order = 'id', string $sort = 'ASC'): Collection;
+    public function paginate(int $perPage = 10, string $order = 'id', string $sort = 'ASC'): Jsonable;
 
     public function create(Request $request): Article;
 
