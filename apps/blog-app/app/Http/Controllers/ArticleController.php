@@ -99,6 +99,6 @@ class ArticleController extends Controller
     public function destroy($id): RedirectResponse
     {
         $this->article->delete($id);
-        return redirect()->route('articles.index', ['article' => $id])->with(['message' => 'Article is successfully deleted.']);
+        return redirect()->route('articles.index')->with(['message' => 'Article is successfully deleted.']);
     }
 }
